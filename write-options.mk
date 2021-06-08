@@ -26,6 +26,9 @@ SERIAL_RAW != echo -e "$(SERIAL)"
 
 write: $(APP_HEXFILE) write_ocd
 
+
+PROGRAMMER_SCRIPTS_DIR=./para-programar
+
 write_ocd:
 #	openocd -s $(BOARDDIR) -f $(OOCD_CFG) -c "hla_serial $(SERIAL); program $(APP_HEXFILE) verify reset exit"
 #	openocd -f $(OOCD_CFG) -c "hla_serial $(SERIAL); program $(APP_HEXFILE) verify reset exit"
@@ -33,4 +36,6 @@ write_ocd:
 #	openocd -f /usr/local/share/openocd/scripts/interface/stlink.cfg -f /usr/local/share/openocd/scripts/board/stm32vldiscovery.cfg -c "hla_serial $(SERIAL); program $(APP_HEXFILE) verify reset exit"
 
 # 2021-04-19 - correcting openocd board configuration file choice:
-	openocd -f /usr/local/share/openocd/scripts/interface/stlink.cfg -f /usr/local/share/openocd/scripts/board/st_nucleo_f0.cfg -c "hla_serial $(SERIAL); program $(APP_HEXFILE) verify reset exit"
+#	openocd -f /usr/local/share/openocd/scripts/interface/stlink.cfg -f /usr/local/share/openocd/scripts/board/st_nucleo_f0.cfg -c "hla_serial $(SERIAL); program $(APP_HEXFILE) verify reset exit"
+
+	openocd -f ${PROGRAMMER_SCRIPTS_DIR}/stlink.cfg -f ${PROGRAMMER_SCRIPTS_DIR}/st_nucleo_f0.cfg -c "hla_serial $(SERIAL); program $(APP_HEXFILE) verify reset exit"
