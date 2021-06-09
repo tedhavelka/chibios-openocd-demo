@@ -21,23 +21,44 @@
 
 
 // 2021-04-19 - MON,
-#define BLINK_PERIOD_IN_MS (300)
+#define BLINK_PERIOD_SHORT__IN_MS (150)
+#define BLINK_PERIOD_LONG__IN_MS (600)
 
+#define SHORT_PATTERN_1_REPETITIONS (3)
+#define SHORT_PATTERN_2_REPETITIONS (2)
 
 /*
  * Green LED blinker thread, times are in milliseconds.
  */
 static THD_WORKING_AREA(waThread1, 128);
-static THD_FUNCTION(Thread1, arg) {
+static THD_FUNCTION(Thread1, arg)
+{
+    int i = 0;
 
-  (void)arg;
-  chRegSetThreadName("blinker");
-  while (true) {
-    palClearPad(GPIOA, GPIOA_LED_GREEN);
-    chThdSleepMilliseconds(BLINK_PERIOD_IN_MS);
-    palSetPad(GPIOA, GPIOA_LED_GREEN);
-    chThdSleepMilliseconds(BLINK_PERIOD_IN_MS);
-  }
+    (void)arg;
+    chRegSetThreadName("blinker");
+    while (true) {
+        for ( i = 0; i < SHORT_PATTERN_1_REPETITIONS; i++ )
+        {
+            palSetPad(GPIOA, GPIOA_LED_GREEN);
+            chThdSleepMilliseconds(BLINK_PERIOD_SHORT__IN_MS);
+            palClearPad(GPIOA, GPIOA_LED_GREEN);
+            chThdSleepMilliseconds(BLINK_PERIOD_SHORT__IN_MS);
+        }
+
+        chThdSleepMilliseconds(BLINK_PERIOD_LONG__IN_MS);
+
+        for ( i = 0; i < SHORT_PATTERN_2_REPETITIONS; i++ )
+        {
+            palSetPad(GPIOA, GPIOA_LED_GREEN);
+            chThdSleepMilliseconds(BLINK_PERIOD_SHORT__IN_MS);
+            palClearPad(GPIOA, GPIOA_LED_GREEN);
+            chThdSleepMilliseconds(BLINK_PERIOD_SHORT__IN_MS);
+        }
+
+        chThdSleepMilliseconds(BLINK_PERIOD_LONG__IN_MS);
+
+    }
 }
 
 /*
