@@ -1,3 +1,12 @@
+##----------------------------------------------------------------------
+## 2021-06-09 - ChibiOS openocd demo, simple blink demo for tesing
+##  gcc and openocd toolchain on Ubuntu VirtualBox virtual machine.
+##
+## 2021-06-09 - Ted bringing local directory 'cfg' and its three header
+##  files into version control.  They're needed to build this demo
+##  firmware.
+##----------------------------------------------------------------------
+
 ./build/*
-./cfg/*
+#./cfg/*
 ./set-aside/*

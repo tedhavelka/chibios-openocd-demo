@@ -21,7 +21,7 @@
 
 
 // 2021-04-19 - MON,
-#define BLINK_PERIOD_IN_MS (1200)
+#define BLINK_PERIOD_IN_MS (300)
 
 
 /*
