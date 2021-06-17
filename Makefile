@@ -187,6 +187,7 @@ include $(RULESPATH)/rules.mk
 ## 2021-04-19 MON - added by Ted, borrowing and amending 'write' target from Oresat
 ##  firmware toolchain/toolchain.mk file:
 include write-options.mk
+include toolchain.mk
 
 #
 # Custom rules
